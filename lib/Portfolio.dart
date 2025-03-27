@@ -23,7 +23,7 @@ class _PortfolioHomeState extends State<PortfolioHome> with SingleTickerProvider
     return Scaffold(
       body: Stack(
         children: [
-          AnimatedBackgroundEffect(), // 🌟 Smooth Gradient + Particles
+          AnimatedBackgroundEffect(),
           Padding(
             padding: const EdgeInsets.only(left: 10,right:10 ),
             child: SingleChildScrollView(
@@ -42,7 +42,7 @@ class _PortfolioHomeState extends State<PortfolioHome> with SingleTickerProvider
                             //child: Image.asset("assets/images/nikhil.png"),
                           ),
                           SizedBox(height: 15),
-                          Text("Hey, I'm Nikhil!", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+                          Text("Hey, I'm Nikhil!", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold,color: Colors.white)),
                           Text("Flutter Developer | Front-end Developer", style: TextStyle(fontSize: 22, color: Colors.white)),
                         ],
                       ),
@@ -54,11 +54,13 @@ class _PortfolioHomeState extends State<PortfolioHome> with SingleTickerProvider
                     child: Row(
                       children: [
                         Image.asset("assets/images/graduated.png", height: 25),
-                        Text(" Education:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                        Text(" Education:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold,color: Colors.white)),
                       ],
                     ),
                   ),
                   Card(
+                    color: Colors.white,
+
                     margin: EdgeInsets.symmetric(vertical: 12),
                     child: Padding(
                       padding: EdgeInsets.all(16),
@@ -67,8 +69,8 @@ class _PortfolioHomeState extends State<PortfolioHome> with SingleTickerProvider
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("BSc in Information Technology", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                            Text("Sarvajanik University (2024 - 2028)", style: TextStyle(fontSize: 18, color: Colors.grey[700])),
+                            Text("BSc in Information Technology", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,color: Colors.black)),
+                            Text("Sarvajanik University (2024 - 2028)", style: TextStyle(fontSize: 18, color: Colors.black)),
                           ],
                         ),
                       ),
@@ -76,10 +78,13 @@ class _PortfolioHomeState extends State<PortfolioHome> with SingleTickerProvider
                   ),
 
                   Card(
+                    color: Colors.white,
                     margin: EdgeInsets.symmetric(vertical: 12),
                     child: Padding(
+
                       padding: EdgeInsets.all(16),
                       child: Container(
+
                         width: double.maxFinite,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +105,7 @@ SizedBox(height: 50,),
                     child: Row(
                       children: [
                         Image.asset("assets/images/skill.png",height: 25,),
-                        Text(" Skills:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                        Text(" Skills:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold,color: Colors.white)),
                       ],
                     ),
                   ),
@@ -108,10 +113,14 @@ SizedBox(height: 50,),
                     spacing: 12,
                     runSpacing: 10,
                     children: [
-                      Card(child: _buildSkillChip("Flutter")),
-                      Card(child: _buildSkillChip("Dart")),
-                      Card(child: _buildSkillChip("Firebase")),
-                      Card(child: _buildSkillChip("REST APIs")),
+                      Card(                    color: Colors.white,
+                      child: _buildSkillChip("Flutter")),
+                      Card(                    color: Colors.white,
+                          child: _buildSkillChip("Dart")),
+                      Card(                    color: Colors.white,
+                          child: _buildSkillChip("Firebase")),
+                      Card(                    color: Colors.white,
+                          child: _buildSkillChip("REST APIs")),
                     ],
                   ),
                   SizedBox(height: 50),
@@ -121,7 +130,7 @@ SizedBox(height: 50,),
                     child: Row(
                       children: [
                         Image.asset("assets/images/start-up.png",height: 25,),
-                        Text(" Projects:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                        Text(" Projects:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold,color: Colors.white)),
                       ],
                     ),
                   ),
@@ -186,6 +195,7 @@ SizedBox(height: 50,),
     return FadeInLeft(
       duration: Duration(milliseconds: 800),
       child: Card(
+        color: Colors.white,
         margin: EdgeInsets.symmetric(vertical: 12),
         child: ListTile(
           title: Text(title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
@@ -200,8 +210,10 @@ SizedBox(height: 50,),
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0,),
       child: ZoomIn(
+
         duration: Duration(milliseconds: 800),
         child: ElevatedButton(
+
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 28),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -227,91 +239,18 @@ SizedBox(height: 50,),
 
 }
 
-class AnimatedBackgroundEffect extends StatefulWidget {
-  @override
-  _AnimatedBackgroundEffectState createState() => _AnimatedBackgroundEffectState();
-}
 
-class _AnimatedBackgroundEffectState extends State<AnimatedBackgroundEffect> with TickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2))..repeat(reverse: true);
-  }
-
+class AnimatedBackgroundEffect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // 🌈 Smooth Gradient Animation
-        AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: AlignmentTween(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight
-                  ).evaluate(_controller), // 🔄 Swap effect
-                  end: AlignmentTween(
-                      begin: Alignment.bottomRight,
-                      end: Alignment.topLeft
-                  ).evaluate(_controller), // 🔄 Reverse swap
-                  colors: [
-                    ColorTween(begin: Colors.blue, end: Colors.purple.shade900).evaluate(_controller)!,
-                    ColorTween(begin: Colors.purple.shade100, end: Colors.blue).evaluate(_controller)!,
-                  ],
-                ),
-              ),
-            );
-          },
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.deepPurple, Colors.indigo], // 🔥 Yeh do colors mix honge
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-
-        // ✨ Particle Animation
-        Positioned.fill(
-          child: AnimatedBackground(
-            behaviour: RandomParticleBehaviour(
-              options: ParticleOptions(
-                baseColor: Colors.white,
-                spawnOpacity: 0.6,
-                spawnMinRadius: 2.0,
-                spawnMaxRadius: 6.0,
-                spawnMinSpeed: 10.0,
-                spawnMaxSpeed: 30.0,
-                particleCount: 100,
-              ),
-            ),
-            vsync: this,
-            child: Container(),
-          ),
-        ),
-        Positioned.fill(
-          child: AnimatedBackground(
-            behaviour: RandomParticleBehaviour(
-              options: ParticleOptions(
-                baseColor: Colors.black87,
-                spawnOpacity: 0.6,
-                spawnMinRadius: 2.0,
-                spawnMaxRadius: 6.0,
-                spawnMinSpeed: 10.0,
-                spawnMaxSpeed: 30.0,
-                particleCount: 100,
-              ),
-            ),
-            vsync: this,
-            child: Container(),
-          ),
-        ),
-      ],
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
