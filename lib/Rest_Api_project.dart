@@ -18,7 +18,7 @@ class _RestApiState extends State<RestApi> {
     super.initState();
     _controller = VideoPlayerController.asset("assets/videos/Screen_recording_20250305_170158.mp4")
       ..initialize().then((_) {
-        setState(() {}); // UI update karega jab video load ho jaye
+        setState(() {});
       }).catchError((error) {
         print("Video load error: $error");
       });
@@ -33,16 +33,16 @@ class _RestApiState extends State<RestApi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,  // Yeh zaroori hai! Isse AppBar transparent hoke background ke andar aa jayega
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-     // backgroundColor: Colors.transparent, // Background ko transparent banayega
+     // backgroundColor: Colors.transparent,
         appBar:  AppBar(
           title: Center(child: Text("Rest Api", style: TextStyle(color: Colors.black,fontSize: 40))),
-          backgroundColor: Colors.transparent, // AppBar ka background transparent karega
-          elevation: 0, // Shadow hata dega
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent, // Status bar bhi transparent ho jayega
-            statusBarIconBrightness: Brightness.dark, // Dark icons for better visibility
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
           ),
         ),
 
@@ -65,26 +65,25 @@ class _RestApiState extends State<RestApi> {
                         color: Colors.white70,
                         ),
                         child: Stack(
-                          alignment: Alignment.center, // Center align karega button ko
+                          alignment: Alignment.center,
                           children: [
                             _controller.value.isInitialized
                                 ? ClipRRect(
-                              borderRadius: BorderRadius.circular(10), // Rounded corners
+                              borderRadius: BorderRadius.circular(10),
                               child: AspectRatio(
                                 aspectRatio: _controller.value.aspectRatio,
                                 child: VideoPlayer(_controller),
                               ),
                             )
-                                : Center(child: CircularProgressIndicator()), // Jab tak video load ho raha hai
+                                : Center(child: CircularProgressIndicator()),
 
-                            // **Play/Pause button video ke center me**
                             IconButton(
                               icon: Icon(
                                 _controller.value.isInitialized && _controller.value.isPlaying
                                     ? Icons.pause
                                     : Icons.play_arrow,
-                                size: 50,
-                                color: Colors.black, // Thoda transparent white
+                                size:50,
+                                color:Colors.black,
                               ),
                               onPressed: () {
                                 if (_controller.value.isInitialized) {

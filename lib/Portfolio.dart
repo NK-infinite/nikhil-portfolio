@@ -157,7 +157,7 @@ SizedBox(height: 50,),
                     child: Row(
                       children: [
                         Image.asset("assets/images/contact-us.png",height: 25,),
-                        Text(" Contact Me:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                        Text(" Contact Me:", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold,color: Colors.white)),
                       ],
                     ),
                   ),
